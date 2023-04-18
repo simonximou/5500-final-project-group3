@@ -27,6 +27,7 @@ export default function Post({ post }) {
 
   const likeHandler = () => {
     try {
+      // LIKE logic is processed in backend
       axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
@@ -38,7 +39,7 @@ export default function Post({ post }) {
       axios.delete("/posts/" + post._id);
       window.location.reload();
     } catch (err) {
-      console.log("test1", err)
+      console.log(err)
     }
   }
 
@@ -61,6 +62,7 @@ export default function Post({ post }) {
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
+          {/*Render the Delete button if the current user is logged in as Admin*/}
           {!user.isAdmin && (<div className="postTopRight">
             <DeleteForever onClick={deleteHandler}/>
           </div>)}
@@ -75,13 +77,11 @@ export default function Post({ post }) {
               className="likeIcon"
               src={`${PF}like.png`}
               onClick={likeHandler}
-              alt=""
             />
             <img
               className="likeIcon"
               src={`${PF}heart.png`}
               onClick={likeHandler}
-              alt=""
             />
             <span className="postLikeCounter">{like} people like it</span>
           </div>
