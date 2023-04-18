@@ -2,14 +2,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { constellationCall } from "../../apiCalls";
 import { useState, useEffect } from "react";
-const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+const PF = process.env.REACT_APP_PUBLIC_FOLDER; // env variable that specifies the public folder that contains static assest
 
 export default function ({ constellation }) {
   if (!constellation) {
     return <></>;
   }
   const [data, setData] = useState({});
+  
   useEffect(() => {
+    // fetch yesterday's and today's horoscope from aztro public api
+    // by calling util emthod constellationCall
     constellationCall(constellation).then((res) => {
       setData(res);
     });
