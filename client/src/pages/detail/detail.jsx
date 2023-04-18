@@ -9,6 +9,8 @@ import Feed from "../../components/feed/Feed";
 
 export default function Detail() {
   const constellation = useParams().constellation.toLowerCase();
+  // If the constellation entered on the path route is invalid,
+  // Signals the user that "No results found"
   if (!ConstellationArray.includes(constellation)) {
     return (
       <>
@@ -22,6 +24,9 @@ export default function Detail() {
       </>
     );
   }
+  
+  // If the constellation is valid, renders the daily horoscope in <Constellation/>,
+  // and renders the posts by others with the same constellation in <Feed/> component 
   return (
     <>
       <Topbar />
