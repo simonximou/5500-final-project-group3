@@ -25,11 +25,15 @@ function App() {
   return (
     <Router>
       <Switch>
+    
         <Route exact path="/">
           <Home />
         </Route>
 
-        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        <Route path="/login">
+          {user ? <Redirect to="/" /> : <Login />}
+        </Route>
+
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
         </Route>
@@ -37,6 +41,7 @@ function App() {
         <Route path="/search/:constellation">
           <SearchResult />
         </Route>
+
         <Route path="/search">
           {user ? <Search /> : <Redirect to="/login" />}
         </Route>
@@ -44,7 +49,10 @@ function App() {
         <Route path="/detail/:constellation">
           <Detail />
         </Route>
-        <Route path="/post">{user ? <Post /> : <Redirect to="/login" />}</Route>
+
+        <Route path="/post">
+           {user ? <Post /> : <Redirect to="/login" />}
+        </Route>
 
         <Route path="/profile/:username/posts">
           <UserPost />
@@ -53,6 +61,7 @@ function App() {
         <Route path="/profile/:username">
           <Profile />
         </Route>
+
         <Route path="/profile/">
           <Profile />
         </Route>
@@ -60,6 +69,7 @@ function App() {
         <Route path="/edit-profile/">
           <EditProfile />
         </Route>
+
         <Route path="/admin">
           <Users />
         </Route>
