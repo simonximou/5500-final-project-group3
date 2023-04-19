@@ -3,12 +3,13 @@ import { constellationCall } from "../apiCalls";
 
 export default function (constellation) {
   const [data, setData] = useState({});
+  
   useEffect(() => {
     constellationCall(constellation.constellation).then((res) => {
       setData(res);
     });
-    console.log(constellation);
-    console.log(data);
+    // console.log(constellation);DEBUG
+    // console.log(data);DEBUG
   }, [constellation]);
 
   return (
