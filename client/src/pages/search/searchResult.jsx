@@ -12,8 +12,10 @@ import { constellationCall } from "../../apiCalls";
 import ConstellatioBrief from "../../components/ConstellatioBrief";
 
 export default function SearchResult() {
-  const input = useParams().constellation.toLowerCase();
+  const input = useParams().constellation.toLowerCase(); // get the path parameter from the route
   const result = [];
+  
+  // Filters the constellation based on the input
   ConstellationArray.forEach((e) => {
     if (e.includes(input)) {
       result.push(e);
