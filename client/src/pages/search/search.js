@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useHistory } from "react-router-dom";
 import { ConstellationArray } from "../../context/Constellation";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { ReactSearchAutocomplete } from "react-search-autocomplete"; // This is a component provided by react, which provides the auto complete feature
 
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -15,6 +15,7 @@ export default function Search() {
   function handleOnSelect(item) {
     history.push("/search/" + item.name);
   }
+  
   ConstellationArray.forEach((e) => {
     items.push({ name: e });
   });
@@ -24,19 +25,21 @@ export default function Search() {
       console.log("User pressed: ", event.key);
       if (event.key === "Enter") {
         event.preventDefault();
-        console.log(document.getElementsByTagName("input")[0].value);
+        // console.log(document.getElementsByTagName("input")[0].value); DEBUG
         history.push(
           "/search/" + document.getElementsByTagName("input")[0].value
         );
       }
     };
-
+    
+    // Binds the eventListener to document object
     document.addEventListener("keydown", keyDownHandler);
 
-    return () => {
+    return () => { // returns a clean-up function to remove avoid memory leaks or potential bugs
       document.removeEventListener("keydown", keyDownHandler);
     };
   }, []);
+  
   return (
     <>
       <Topbar />
