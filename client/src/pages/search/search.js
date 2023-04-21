@@ -12,6 +12,7 @@ export default function Search() {
   const history = useHistory();
   const items = [];
 
+  // User can either select constellation in the search box or they can confirm search research by clicking enter key
   function handleOnSelect(item) {
     history.push("/search/" + item.name);
   }
@@ -20,7 +21,8 @@ export default function Search() {
     items.push({ name: e });
   });
 
-  useEffect(() => {
+  useEffect(() => { 
+    // Handeling enter key
     const keyDownHandler = (event) => {
       console.log("User pressed: ", event.key);
       if (event.key === "Enter") {
