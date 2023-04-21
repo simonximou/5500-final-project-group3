@@ -63,7 +63,7 @@ export default function Post({ post }) {
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
           {/*Render the Delete button if the current user is logged in as Admin*/}
-          {!user.isAdmin && (<div className="postTopRight">
+          {user.isAdmin && (<div className="postTopRight">
             <DeleteForever onClick={deleteHandler}/>
           </div>)}
         </div>
