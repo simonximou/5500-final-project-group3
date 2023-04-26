@@ -10,7 +10,6 @@ export const loginCall = async (userCredential, dispatch) => {
   }
 };
 
-
 export const constellationCall = async (constellation) => {
   try {
     const today = await axios.post(
@@ -41,3 +40,10 @@ export const updateUser = async (userId, userInfo) => {
   return res.data;
 };
 
+export const sendEmail = async (userEmail, code) => {
+  const res = await axios.post("/users/sendCode", {
+    userEmail: userEmail,
+    code: code,
+  });
+  return res.data;
+};

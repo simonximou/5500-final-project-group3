@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef } from "react";
 import "./login.css";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
@@ -21,7 +21,7 @@ export default function Login() {
 
   const handleClickRegister = (e) => {
     history.push("/register");
-  }
+  };
 
   return (
     <div className="login">
@@ -59,7 +59,10 @@ export default function Login() {
             </button>
             <span className="loginForgot">Forgot Password?</span>
 
-            <button onClick={handleClickRegister} className="loginRegisterButton">
+            <button
+              onClick={handleClickRegister}
+              className="loginRegisterButton"
+            >
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
               ) : (

@@ -6,7 +6,7 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete"; // This is 
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./search.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 export default function Search() {
   const history = useHistory();
@@ -16,12 +16,12 @@ export default function Search() {
   function handleOnSelect(item) {
     history.push("/search/" + item.name);
   }
-  
+
   ConstellationArray.forEach((e) => {
     items.push({ name: e });
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     // Handeling enter key
     const keyDownHandler = (event) => {
       console.log("User pressed: ", event.key);
@@ -33,15 +33,16 @@ export default function Search() {
         );
       }
     };
-    
+
     // Binds the eventListener to document object
     document.addEventListener("keydown", keyDownHandler);
 
-    return () => { // returns a clean-up function to remove avoid memory leaks or potential bugs
+    return () => {
+      // returns a clean-up function to remove avoid memory leaks or potential bugs
       document.removeEventListener("keydown", keyDownHandler);
     };
-  }, []);
-  
+  });
+
   return (
     <>
       <Topbar />

@@ -1,10 +1,9 @@
 import "./sidebar.css";
 import { RssFeed, Chat, SupervisorAccount, Add } from "@material-ui/icons";
 import React, { useCallback } from "react";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
-import { Hidden } from "@material-ui/core";
 
 export default function Sidebar() {
   const history = useHistory();
