@@ -43,6 +43,13 @@ export default function Sidebar() {
             <SupervisorAccount className="sidebarIcon" />
             <span className="sidebarListItemText">Admin</span>
           </li>
+          <li
+            onClick={useCallback(() => history.push("/post"), [history])}
+            className="sidebarListItem"
+          >
+            <Add className="sidebarIcon" />
+            <span className="sidebarListItemText">0421</span>
+          </li>
         </ul>
         <hr className="sidebarHr" />
         {user == null || user.isFree ? <label>ad fore free user</label> : ""}

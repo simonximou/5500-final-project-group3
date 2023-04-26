@@ -53,3 +53,7 @@
   margin: 0;
   list-style: none;
 }
+
+li {
+  color: blue;
+}
