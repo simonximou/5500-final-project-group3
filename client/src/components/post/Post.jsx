@@ -39,9 +39,9 @@ export default function Post({ post }) {
       axios.delete("/posts/" + post._id);
       window.location.reload();
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   return (
     <div className="post">
@@ -50,35 +50,39 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <Link to={`/profile/${user.username}`}>
               <img
+                alt="postProfileImg"
                 className="postProfileImg"
                 src={
                   user.profilePicture
                     ? PF + user.profilePicture
                     : PF + "person/noAvatar.png"
                 }
-                alt=""
               />
             </Link>
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
           {/*Render the Delete button if the current user is logged in as Admin*/}
-          {user.isAdmin && (<div className="postTopRight">
-            <DeleteForever onClick={deleteHandler}/>
-          </div>)}
+          {user.isAdmin && (
+            <div className="postTopRight">
+              <DeleteForever onClick={deleteHandler} />
+            </div>
+          )}
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={PF + post.img} alt="" />
+          <img className="postImg" src={PF + post.img} alt="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
+              alt="likeIcon"
               className="likeIcon"
               src={`${PF}like.png`}
               onClick={likeHandler}
             />
             <img
+              alt="likeIcon"
               className="likeIcon"
               src={`${PF}heart.png`}
               onClick={likeHandler}

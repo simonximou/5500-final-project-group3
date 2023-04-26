@@ -1,5 +1,4 @@
 import axios from "axios";
-const nodemailer = require("nodemailer");
 
 export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: "LOGIN_START" });

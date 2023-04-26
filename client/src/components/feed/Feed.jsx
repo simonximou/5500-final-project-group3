@@ -12,10 +12,11 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Feed({ username, constellation = "", post = true }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext); // user is the current loggedin user
-  
+
   useEffect(() => {
     const fetchPosts = async () => {
-      if (constellation != "") { // If the constellation is not empty, it means we are at Search page
+      if (constellation !== "") {
+        // If the constellation is not empty, it means we are at Search page
         // We fetch all the posts from users who have the same constellation as the current user.
         const res = await axios.get("/posts/" + constellation);
         setPosts(res.data);
@@ -33,13 +34,15 @@ export default function Feed({ username, constellation = "", post = true }) {
       }
     };
     fetchPosts();
-  }, [username, user._id]);
+  }, [constellation, username, user._id]);
 
   return (
     <div className="feed">
       <div className="feedWrapper">
         {/*If we are post page, we render a <Share /> component, which allows the user to add a post*/}
-        {(!username || username === user.username) && post == true && <Share />}
+        {(!username || username === user.username) && post === true && (
+          <Share />
+        )}
         {posts.map((p) => (
           <Post key={p._id} post={p} />
         ))}
