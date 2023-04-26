@@ -1,4 +1,5 @@
 import axios from "axios";
+const nodemailer = require("nodemailer");
 
 export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: "LOGIN_START" });
@@ -9,7 +10,6 @@ export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: "LOGIN_FAILURE", payload: err });
   }
 };
-
 
 export const constellationCall = async (constellation) => {
   try {
@@ -41,3 +41,10 @@ export const updateUser = async (userId, userInfo) => {
   return res.data;
 };
 
+export const sendEmail = async (userEmail, code) => {
+  const res = await axios.post("/users/sendCode", {
+    userEmail: userEmail,
+    code: code,
+  });
+  return res.data;
+};

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRef } from "react";
 import "./register.css";
 import { useHistory } from "react-router";
+import { sendEmail } from "../../apiCalls";
 
 export default function Register() {
   const username = useRef();
@@ -12,11 +13,25 @@ export default function Register() {
   const isFree = useRef();
   const isVip = useRef();
   const isAdmin = useRef();
+  const code = useRef();
+
+  let paddedCode = "";
+
+  const sendEmailVerification = async (e) => {
+    const randomCode = Math.floor(Math.random() * 1000000);
+    paddedCode = randomCode.toString().padStart(6, "0");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email.current.value)) {
+      sendEmail(email.current.value, paddedCode);
+    }
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
       passwordAgain.current.setCustomValidity("Passwords don't match!");
+    } else if (code.current.value !== paddedCode) {
+      code.current.setCustomValidity("Email verification code does not match");
     } else {
       const user = {
         username: username.current.value,
@@ -49,7 +64,7 @@ export default function Register() {
           </span>
         </div>
         <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClick}>
+          <div className="loginBox">
             <input
               placeholder="Username"
               required
@@ -78,6 +93,15 @@ export default function Register() {
               className="loginInput"
               type="password"
             />
+            <input
+              type="text"
+              placeholder="Enter verification code"
+              className="loginInput"
+              ref={code}
+            />
+            <button onClick={sendEmailVerification} className="sendEmailButton">
+              Send Code
+            </button>
             <div>
               <input
                 type="radio"
@@ -87,8 +111,7 @@ export default function Register() {
                 ref={isFree}
                 defaultChecked
               />
-              <label htmlFor="free_user">Free User</label>
-              <br />
+              <label htmlFor="free_user">Free User </label>
               <input
                 type="radio"
                 id="vip_user"
@@ -96,8 +119,7 @@ export default function Register() {
                 value="vip"
                 ref={isVip}
               />
-              <label htmlFor="vip_user">VIP User</label>
-              <br />
+              <label htmlFor="vip_user">VIP User </label>
               <input
                 type="radio"
                 id="admin"
@@ -106,16 +128,15 @@ export default function Register() {
                 ref={isAdmin}
               />
               <label htmlFor="admin">Administer</label>
-              <br />
             </div>
             <br />
-            <button className="loginButton" type="submit">
+            <button className="loginButton" onClick={handleClick}>
               Sign Up
             </button>
             <button onClick={handleClickLogin} className="loginRegisterButton">
               Go to Log In
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
