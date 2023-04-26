@@ -72,19 +72,22 @@ const UserSchema = new mongoose.Schema(
       type: String,
       enum: ["Male", "Female", "Prefer not to respond"]
     },
-      fullName:{
-        type: String,
+    fullName:{
+      type: String,
+      max: 50,
+    },
+    address:{
+      type: String,
         max: 50,
-      },
-      address:{
-        type: String,
-          max: 50,
-      },
-      age:{
-        type: Number,
+    },
+    age:{
+      type: Number,
 
-      }
-
+    },
+    verified: {
+      type: Boolean, 
+      default: false
+    }
   },
   { timestamps: true }
 );

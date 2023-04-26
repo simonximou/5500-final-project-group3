@@ -6,7 +6,7 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete"; // This is 
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./search.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 export default function Search() {
   const history = useHistory();

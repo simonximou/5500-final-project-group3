@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState} from "react";
 import "./register.css";
 import { useHistory } from "react-router";
 
@@ -12,7 +12,10 @@ export default function Register() {
   const isFree = useRef();
   const isVip = useRef();
   const isAdmin = useRef();
+ 
+  const [msg, setMsg] = useState("");
 
+ 
   const handleClick = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
@@ -27,8 +30,9 @@ export default function Register() {
         isAdmin: isAdmin.current.checked,
       };
       try {
-        await axios.post("/auth/register", user);
-        history.push("/login");
+        const {data: res} = await axios.post("/auth/register", user);
+        setMsg(res.message);
+        //history.push("/login");
       } catch (err) {
         console.log(err);
       }
@@ -109,6 +113,7 @@ export default function Register() {
               <br />
             </div>
             <br />
+            {msg && <div className="success_msg">{msg}</div>}
             <button className="loginButton" type="submit">
               Sign Up
             </button>

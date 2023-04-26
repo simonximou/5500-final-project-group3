@@ -2,13 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import Constellation from "../../components/constellation";
 import { ConstellationArray } from "../../context/Constellation";
 import "./search.css";
 import { useParams } from "react-router-dom";
-import Feed from "../../components/feed/Feed";
-import { useEffect } from "react";
-import { constellationCall } from "../../apiCalls";
 import ConstellatioBrief from "../../components/ConstellatioBrief";
 
 export default function SearchResult() {

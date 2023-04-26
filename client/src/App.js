@@ -19,6 +19,7 @@ import React from "react";
 import { AuthContext } from "./context/AuthContext";
 import Users from "./pages/users";
 import Detail from "./pages/detail/detail";
+import EmailVerify from "./pages/EmailVerify";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -72,6 +73,10 @@ function App() {
 
         <Route path="/admin">
           <Users />
+        </Route>
+
+        <Route path="/users/:id/verify/:token">
+          <EmailVerify/>
         </Route>
 
 

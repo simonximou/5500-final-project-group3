@@ -1,7 +1,4 @@
 import Topbar from "../../components/topbar/Topbar";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Feed from "../../components/feed/Feed";
-import post from "../../components/post/Post"
 import "./user-post.css";
 import Post from "../../components/post/Post";
 import {useContext, useEffect, useState} from "react";
