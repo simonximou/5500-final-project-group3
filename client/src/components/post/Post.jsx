@@ -71,18 +71,16 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={PF + post.img} alt="postImg" />
+          <img className="postImg" src={PF + post.img} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
-              alt="likeIcon"
               className="likeIcon"
               src={`${PF}like.png`}
               onClick={likeHandler}
             />
             <img
-              alt="likeIcon"
               className="likeIcon"
               src={`${PF}heart.png`}
               onClick={likeHandler}

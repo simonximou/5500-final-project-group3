@@ -1,46 +1,60 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { constellationCall } from "../../apiCalls";
 import { useState, useEffect } from "react";
+import pic from "./1251682639360_.pic.jpg"
 const PF = process.env.REACT_APP_PUBLIC_FOLDER; // env variable that specifies the public folder that contains static assest
 
-export default function ConstellationInfo({ constellation }) {
+export default function ({ constellation }) {
+  if (!constellation) {
+    return <></>;
+  }
   const [data, setData] = useState({});
 
   useEffect(() => {
     // fetch yesterday's and today's horoscope from aztro public api
     // by calling util emthod constellationCall
-    if (!constellation) {
-      return <></>;
-    }
     constellationCall(constellation).then((res) => {
       setData(res);
     });
   }, [constellation]);
 
   return (
-    <div
-      className="container"
-      style={{ paddingLeft: "30px", paddingRight: "30px", paddingTop: "10px" }}
-    >
-      <div class="row">
-        <h1>Daily horoscopes for {constellation}</h1>
-      </div>
-      <div class="row">
-        <div class="col-sm">
+      <div
+          className="container"
+          style={{paddingLeft: "15px", paddingRight: "30px", paddingTop: "10px" }}
+      >
+
+        <div class="row">
+          <div class="col-6">
+            <h1>Daily horoscopes art for {constellation}</h1>
+          </div>
+          <div className="col-6">
+            <h1>Join our community today!</h1>
+          </div>
+        </div>
+        <div class="row"
+             style={{paddingBottom: "50px" }}>
+          <div class="col-sm">
+            <img
+                src={`${PF}constellation/${constellation}.jpeg`}
+                style={{ width: "400px", height: "300px" }}
+            />
+          </div>
+
+          <div class="col-sm">
+            <img
+                src={pic}
+                style={{width: 300, height:300, borderRadius: 400/ 2}}
+            />
+            <div class="row">{data.yesterday}</div>
+          </div>
+        </div>
+        <div className="row">
           <img
-            alt="Constellation"
-            src={`${PF}constellation/${constellation}.jpeg`}
-            style={{ width: "400px", height: "300px" }}
+              src={'https://thumbs.dreamstime.com/b/magical-banner-astrology-celestial-alchemy-heavenly-art-zodiac-tarot-device-universe-crescent-moon-196472869.jpg'}
           />
         </div>
-
-        <div class="col-sm" style={{ padding: "30px" }}>
-          <div class="row" id="today">
-            {data.today}
-          </div>
-          <div class="row">{data.yesterday}</div>
-        </div>
       </div>
-    </div>
   );
+
 }

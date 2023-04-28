@@ -1,12 +1,16 @@
 import "./topbar.css";
-import { Link } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
+    const history = useHistory;
+    const handleLogout = ()=>{
+        dispatch({ type: "LOGOUT" })
+        history.push(`/`);
+    }
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -31,6 +35,9 @@ export default function Topbar() {
                   style={{ marginLeft: "10px" }}
                 />{" "}
               </Link>
+              <button className="btn btn-info align-middle" style={{marginLeft: 2+'em'}}
+                      onClick={() => handleLogout()}
+              >Logout</button>
             </span>
           ) : (
             <Link to="/login" style={{ textDecoration: "none" }}>
