@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 import { Hidden } from "@material-ui/core";
+import pic from "../constellation/1181682636155_.pic.jpg";
 
 export default function Sidebar() {
   const history = useHistory();
@@ -52,8 +53,12 @@ export default function Sidebar() {
           </li>
         </ul>
         <hr className="sidebarHr" />
-        {user == null || user.isFree ? <label>ad fore free user</label> : ""}
+        {user == null || user.isFree ? <label><img
+            src={'https://i.pinimg.com/736x/f9/f5/b7/f9f5b7ed331fa93d6bbd244c58a73a22.jpg'}
+            style={{width: 200, height: 400}}
+        /></label> : ""}
       </div>
     </div>
   );
 }
+
