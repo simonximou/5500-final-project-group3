@@ -39,8 +39,6 @@ export default function EditProfile() {
       country: countryInput.current.value,
       desc: descInput.current.value,
     };
-    console.log(userInfo);
-    console.log(user._id);
     try {
       await axios.put(`/users/${user._id}`, userInfo);
       history.push(`/profile/${user.username}`);

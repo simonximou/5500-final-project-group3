@@ -1,6 +1,35 @@
 const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
+
+router.post("/sendCode", async (req, res) => {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    service: "gmail",
+    port: 587,
+    secure: true,
+    auth: {
+      user: "daily.horoscope.official@gmail.com",
+      pass: "fjxhvmfojorcnxrb",
+    },
+  });
+
+  var mailOptions = {
+    from: "daily.horoscope.official@gmail.com",
+    to: req.body.userEmail,
+    subject: "Daily Horoscope verification code",
+    text: "Your code is: " + req.body.code,
+  };
+
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      return res.status(500).json(err);
+    } else {
+      return res.status(200).json("Email sent: " + info.response);
+    }
+  });
+});
 
 //update user
 router.put("/:id", async (req, res) => {

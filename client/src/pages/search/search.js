@@ -24,10 +24,8 @@ export default function Search() {
   useEffect(() => {
     // Handeling enter key
     const keyDownHandler = (event) => {
-      console.log("User pressed: ", event.key);
       if (event.key === "Enter") {
         event.preventDefault();
-        // console.log(document.getElementsByTagName("input")[0].value); DEBUG
         history.push(
           "/search/" + document.getElementsByTagName("input")[0].value
         );
